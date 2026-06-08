@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyWarehouseManager® - Diagnostic Test Runner</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #111827;
+      padding: 40px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #6b7280;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 16px;
+    }
+    .test-case {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .test-case:last-child {
+      border-bottom: none;
+    }
+    .test-name {
+      font-weight: 500;
+    }
+    .test-status {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .status-pass {
+      background-color: #ecfdf5;
+      color: #10b981;
+    }
+    .status-fail {
+      background-color: #fef2f2;
+      color: #ef4444;
+    }
+    .summary {
+      margin-top: 24px;
+      background-color: #f1f5f9;
+      padding: 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MyWarehouseManager® Diagnostic Tests</h1>
+    <div class="subtitle">Client-Side Store Logic & State Transitions Auditor</div>
+    
+    <div id="test-results">
+      <!-- Injected tests -->
+    </div>
+
+    <div class="summary" id="test-summary">
+      <span>Total Audited: <span id="total-count">0</span></span>
+      <span style="color:#10b981;">Passed: <span id="pass-count">0</span></span>
+      <span style="color:#ef4444;">Failed: <span id="fail-count">0</span></span>
+    </div>
+  </div>
+
+  <script src="../js/store.js"></script>
+  <script>
+
+    const resultsContainer = document.getElementById('test-results');
+    let total = 0;
+    let passed = 0;
+    let failed = 0;
+
+    function assert(name, condition) {
+      total++;
+      const item = document.createElement('div');
+      item.className = 'test-case';
+
+      if (condition) {
+        passed++;
+        item.innerHTML = `
+          <span class="test-name">${total}. ${name}</span>
+          <span class="test-status status-pass">Pass</span>
+        `;
+      } else {
+        failed++;
+        item.innerHTML = `
+          <span class="test-name">${total}. ${name}</span>
+          <span class="test-status status-fail">Fail</span>
+        `;
+      }
+      resultsContainer.appendChild(item);
+      updateSummary();
+    }
+
+    function updateSummary() {
+      document.getElementById('total-count').innerText = total;
+      document.getElementById('pass-count').innerText = passed;
+      document.getElementById('fail-count').innerText = failed;
+    }
+
+    // Run tests when store initializes
+    try {
+      // 1. Reset database to seeded condition
+      Store.resetData();
+      Store.init();
+
+      // Test 1: Initial Seed check
+      const products = Store.getProducts();
+      assert('Verify products database seeds successfully', products.length === 5);
+
+      // Test 2: Product fetching by SKU
+      const sh = Store.getProductBySku('SKU-LOR-SHAM-01');
+      assert('Verify product SKU identification lookup', sh !== undefined && sh.name === 'Serie Expert Shampoo');
+
+      // Test 3: Receive Package adds stock
+      const initialStock = sh.stock; // 45
+      const mockPkg = {
+        supplier: "L'Oreal",
+        invoiceNo: 'TEST-INV-101',
+        productName: 'Serie Expert Shampoo',
+        category: 'Shampoo',
+        batchNo: 'B-TEST-88',
+        quantity: 20,
+        cost: 15.00,
+        notes: 'Testing intake receiver'
+      };
+      const grnSlip = Store.savePackage(mockPkg);
+      const updatedSh = Store.getProductBySku('SKU-LOR-SHAM-01');
+      assert('Verify package receipt increases inventory stock count', updatedSh.stock === initialStock + 20);
+
+      // Test 4: Transfer Order draft doesn't alter stock
+      const mockTo = {
+        branch: 'Andheri',
+        items: [
+          { productId: updatedSh.id, sku: updatedSh.sku, name: updatedSh.name, quantityRequested: 10 }
+        ],
+        notes: 'Testing transfer orders creation'
+      };
+      const createdTo = Store.saveTransfer(mockTo);
+      const postDraftSh = Store.getProductBySku('SKU-LOR-SHAM-01');
+      assert('Verify creating a transfer leaves warehouse stock unchanged (Draft)', postDraftSh.stock === updatedSh.stock);
+
+      // Test 5: Dispatching transfer order subtracts stock
+      Store.updateTransferStatus(createdTo.transferNo, 'Dispatched');
+      const postDispatchSh = Store.getProductBySku('SKU-LOR-SHAM-01');
+      assert('Verify dispatching transfer order deducts units from stock', postDispatchSh.stock === postDraftSh.stock - 10);
+
+      // Test 6: Adjust stock logic handles negative caps
+      const prodToAdjust = Store.getProductBySku('SKU-WEL-COLR-02'); // stock 12
+      Store.adjustStock(prodToAdjust.id, -20, 'Damaged', 'Simulated spill');
+      const adjustedProd = Store.getProductBySku('SKU-WEL-COLR-02');
+      assert('Verify stock adjustments do not exceed negative caps (remains >= 0)', adjustedProd.stock === 0);
+
+      // Test 7: Ledger history registers movements
+      const history = Store.getInventoryHistory(prodToAdjust.id);
+      assert('Verify inventory ledger tracks stock adjustment history logs', history.length > 0 && history[0].reference === 'Damaged');
+
+    } catch (err) {
+      console.error(err);
+      assert('CRITICAL RUNTIME ERROR: ' + err.message, false);
+    }
+  </script>
+</body>
+</html>

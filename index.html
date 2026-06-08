@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyWarehouseManager® - Corporate Inventory & Transfer System</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <span class="brand-name">WarehouseManager®</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="nav-link active" data-view="dashboard">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+          <span class="nav-link-text">Dashboard</span>
+        </a>
+        <a class="nav-link" data-view="package-receiver" id="nav-pkg-receiver">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+          <span class="nav-link-text">Package Receiver</span>
+        </a>
+        <a class="nav-link" data-view="inventory">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="nav-link-text">Inventory Manager</span>
+        </a>
+        <a class="nav-link" data-view="transfers" id="nav-transfers">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+          <span class="nav-link-text">Transfer Orders</span>
+        </a>
+        <a class="nav-link" data-view="branch-receiver">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <span class="nav-link-text">Branch Receiver</span>
+        </a>
+        <a class="nav-link" data-view="suppliers" id="nav-suppliers">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="nav-link-text">Suppliers</span>
+        </a>
+        <a class="nav-link" data-view="branches" id="nav-branches">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span class="nav-link-text">Branches</span>
+        </a>
+        <a class="nav-link" data-view="reports">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span class="nav-link-text">Reports</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="toggle-sidebar-btn" id="toggle-sidebar" title="Collapse Sidebar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Header -->
+      <header class="top-header">
+        <!-- Search bar -->
+        <div class="header-search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" placeholder="Global search (SKU, Product, GRN, TO...)" id="global-search-input">
+          <!-- Search results overlay -->
+          <div class="search-results-overlay" id="search-overlay"></div>
+        </div>
+
+        <!-- Right header details -->
+        <div class="header-actions">
+          <!-- Role switcher pills -->
+          <div class="role-selector">
+            <button class="role-pill active" data-role="Warehouse Manager">Warehouse Manager</button>
+            <button class="role-pill" data-role="Branch Manager">Branch Manager</button>
+          </div>
+
+          <!-- Notification bell -->
+          <button class="notification-bell" id="notification-bell-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span class="notification-badge" id="notif-badge" style="display: none;">0</span>
+          </button>
+
+          <!-- Notification center dropdown -->
+          <div class="notification-dropdown" id="notification-dropdown">
+            <div class="notif-header">
+              <h4>Notifications</h4>
+              <button class="notif-clear-btn" id="notif-clear-btn">Clear All</button>
+            </div>
+            <div class="notif-list" id="notif-list-container">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- User profile badge -->
+          <div class="user-profile">
+            <div class="user-avatar" id="user-avatar-initials">WM</div>
+            <div class="user-info">
+              <span class="user-name" id="user-display-name">Alex Carter</span>
+              <span class="user-role" id="user-display-role">Warehouse Manager</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable content area -->
+      <main class="content-area">
+
+        <!-- 1. DASHBOARD PANEL -->
+        <div class="view-panel active" id="dashboard">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Dashboard</h1>
+              <p>Corporate Warehouse Overview and Real-time Status Feed.</p>
+            </div>
+          </div>
+          <!-- Metrics Widgets -->
+          <div class="metrics-grid">
+            <div class="metric-card accent">
+              <div class="metric-details">
+                <h3>Total Inventory</h3>
+                <div class="metric-value" id="metric-total-stock">0 units</div>
+              </div>
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><box path="M22 12h-6l-2 3h-4l-2-3H2"></box><path d="M22 12V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v6"></path><path d="M2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6"></path></svg>
+              </div>
+            </div>
+            <div class="metric-card success">
+              <div class="metric-details">
+                <h3>Stock Value</h3>
+                <div class="metric-value" id="metric-total-val">₹0.00</div>
+              </div>
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+            </div>
+            <div class="metric-card warning">
+              <div class="metric-details">
+                <h3>Low Stock Alerts</h3>
+                <div class="metric-value" id="metric-low-stock">0 Items</div>
+              </div>
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              </div>
+            </div>
+            <div class="metric-card danger">
+              <div class="metric-details">
+                <h3>Pending Transfers</h3>
+                <div class="metric-value" id="metric-pending-transfers">0 Orders</div>
+              </div>
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              </div>
+            </div>
+            <div class="metric-card accent">
+              <div class="metric-details">
+                <h3>Received Today</h3>
+                <div class="metric-value" id="metric-received-today">0 pkgs</div>
+              </div>
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Columns -->
+          <div class="dashboard-layout">
+            <!-- Left col: Stock Distribution -->
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h2>Product Categories Distribution</h2>
+              </div>
+              <div class="card-body">
+                <div class="progress-list" id="dashboard-categories-distribution">
+                  <!-- Generated via JS -->
+                </div>
+              </div>
+            </div>
+            <!-- Right col: Activity Feed -->
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h2>Recent Activity Feed</h2>
+              </div>
+              <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                <div class="activity-list" id="dashboard-activity-feed">
+                  <!-- Generated via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. PACKAGE RECEIVER PANEL -->
+        <div class="view-panel" id="package-receiver">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Package Receiver</h1>
+              <p>Record and generate Goods Receipt Notes (GRN) for stock received from corporate suppliers.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-layout">
+            <!-- Left: Receive Package Form -->
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h2>Receive Package Form</h2>
+              </div>
+              <div class="card-body">
+                <form id="receive-package-form" novalidate>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label for="pkg-supplier">Supplier Name *</label>
+                      <select class="form-control" id="pkg-supplier" required>
+                        <option value="">Select Supplier</option>
+                      </select>
+                      <span class="form-error-msg">Supplier Name is required.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-invoice">Invoice Number *</label>
+                      <input type="text" class="form-control" id="pkg-invoice" placeholder="INV-XXXX" required>
+                      <span class="form-error-msg">Invoice Number is required.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-date">Delivery Date</label>
+                      <input type="text" class="form-control" id="pkg-date" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-product">Product Name *</label>
+                      <input type="text" class="form-control" id="pkg-product" placeholder="Type name or select existing" list="pkg-product-list" required>
+                      <datalist id="pkg-product-list"></datalist>
+                      <span class="form-error-msg">Product Name is required.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-category">Category *</label>
+                      <select class="form-control" id="pkg-category" required>
+                        <option value="">Select Category</option>
+                        <option value="Hair Color">Hair Color</option>
+                        <option value="Shampoo">Shampoo</option>
+                        <option value="Conditioner">Conditioner</option>
+                        <option value="Treatment">Treatment</option>
+                        <option value="Styling">Styling</option>
+                      </select>
+                      <span class="form-error-msg">Category is required.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-batch">Batch Number *</label>
+                      <input type="text" class="form-control" id="pkg-batch" placeholder="B-XXX" required>
+                      <span class="form-error-msg">Batch Number is required.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-quantity">Quantity Received *</label>
+                      <input type="number" class="form-control" id="pkg-quantity" min="1" placeholder="Units received" required>
+                      <span class="form-error-msg">Must be a positive number.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-cost">Unit Cost (₹) *</label>
+                      <input type="number" class="form-control" id="pkg-cost" min="0.01" step="0.01" placeholder="Cost price" required>
+                      <span class="form-error-msg">Must be a valid positive cost value.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="pkg-expiry">Expiry Date</label>
+                      <input type="date" class="form-control" id="pkg-expiry">
+                    </div>
+                    <div class="form-group form-full">
+                      <label for="pkg-notes">Notes / Observations</label>
+                      <textarea class="form-control" id="pkg-notes" placeholder="Enter comments..."></textarea>
+                    </div>
+                  </div>
+                  <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+                    <button type="button" class="btn btn-secondary" id="pkg-reset-btn">Reset</button>
+                    <button type="submit" class="btn btn-primary">Save Package</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Right: GRN History Screen -->
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h2>GRN Receipts History</h2>
+              </div>
+              <div class="card-body" style="padding:0; display:flex; flex-direction:column; justify-content:space-between; height: 100%;">
+                <div style="padding:16px 24px;">
+                  <div class="search-input-wrapper" style="width:100%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" placeholder="Search GRN, Supplier or Product..." id="pkg-history-search">
+                  </div>
+                </div>
+                <div class="table-wrapper" style="border:none; box-shadow:none; border-radius:0; flex:1; overflow-y:auto; max-height:400px;">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th data-sort="grn">GRN No</th>
+                        <th data-sort="date">Date</th>
+                        <th data-sort="supplier">Supplier</th>
+                        <th data-sort="productName">Product</th>
+                        <th data-sort="quantity">Qty</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="pkg-history-table-body">
+                      <!-- Rendered via JS -->
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination" id="pkg-history-pagination">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. INVENTORY MANAGER PANEL -->
+        <div class="view-panel" id="inventory">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Inventory Manager</h1>
+              <p>Monitor warehouse stocks, adjust damages, soft-archive products, and view ledger movements.</p>
+            </div>
+            <button class="btn btn-primary" id="inv-add-product-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Product
+            </button>
+          </div>
+
+          <!-- Filtering and Controls -->
+          <div class="table-controls">
+            <div class="table-filters">
+              <div class="search-input-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Search SKU or Product..." id="inv-table-search">
+              </div>
+              <select class="select-filter" id="inv-filter-category">
+                <option value="">All Categories</option>
+                <option value="Hair Color">Hair Color</option>
+                <option value="Shampoo">Shampoo</option>
+                <option value="Conditioner">Conditioner</option>
+                <option value="Treatment">Treatment</option>
+                <option value="Styling">Styling</option>
+              </select>
+              <select class="select-filter" id="inv-filter-status">
+                <option value="">All Statuses</option>
+                <option value="in-stock">In Stock</option>
+                <option value="low-stock">Low Stock</option>
+                <option value="out-of-stock">Out of Stock</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Main Inventory Grid -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th data-sort="sku">SKU</th>
+                  <th data-sort="name">Product Name</th>
+                  <th data-sort="category">Category</th>
+                  <th data-sort="stock">Current Stock</th>
+                  <th data-sort="cost">Unit Cost</th>
+                  <th>Value</th>
+                  <th data-sort="supplier">Supplier</th>
+                  <th data-sort="reorderLevel">Reorder Lvl</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+            <div class="pagination" id="inventory-table-pagination">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. TRANSFER ORDERS PANEL -->
+        <div class="view-panel" id="transfers">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Transfer Orders</h1>
+              <p>Initiate salon branch allocations, review approvals, and monitor delivery stages.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-layout">
+            <!-- Left: Create Transfer Form -->
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h2>Create Transfer Form</h2>
+              </div>
+              <div class="card-body">
+                <form id="create-transfer-form" novalidate>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label for="to-number">Transfer Number</label>
+                      <input type="text" class="form-control" id="to-number" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="to-branch">Select Destination Branch *</label>
+                      <select class="form-control" id="to-branch" required>
+                        <option value="">Choose Branch</option>
+                      </select>
+                      <span class="form-error-msg">Destination Branch is required.</span>
+                    </div>
+                    <div class="form-group form-full">
+                      <label for="to-date">Transfer Date</label>
+                      <input type="text" class="form-control" id="to-date" readonly>
+                    </div>
+
+                    <!-- Products list for transfer -->
+                    <div class="form-full">
+                      <label style="font-weight: 600; font-size: 0.8rem; margin-bottom: 8px; display: block;">Products List *</label>
+                      <div class="dynamic-rows-container" id="to-products-rows-container">
+                        <!-- JS inject rows -->
+                      </div>
+                      <button type="button" class="btn btn-secondary btn-ghost" id="to-add-product-row-btn" style="margin-top: 12px; width: 100%; border: 1px dashed var(--gray-300);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        Add Another Product
+                      </button>
+                    </div>
+
+                    <div class="form-group form-full" style="margin-top: 12px;">
+                      <label for="to-notes">Notes / Dispatch Instructions</label>
+                      <textarea class="form-control" id="to-notes" placeholder="Delivery notes..."></textarea>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+                    <button type="button" class="btn btn-secondary" id="to-reset-btn">Reset</button>
+                    <button type="submit" class="btn btn-primary" id="to-create-submit-btn">Create Transfer</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Right: Transfer History -->
+            <div class="dashboard-card">
+              <div class="card-header">
+                <h2>Transfer Logs & Status</h2>
+              </div>
+              <div class="card-body" style="padding:0; display:flex; flex-direction:column; justify-content:space-between; height: 100%;">
+                <div style="padding:16px 24px; display:flex; gap:12px;">
+                  <div class="search-input-wrapper" style="flex:1;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" placeholder="Search Transfer No, Branch..." id="to-history-search">
+                  </div>
+                  <select class="select-filter" id="to-history-filter-status">
+                    <option value="">All States</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Dispatched">Dispatched</option>
+                    <option value="Completed">Completed</option>
+                  </select>
+                </div>
+                <div class="table-wrapper" style="border:none; box-shadow:none; border-radius:0; flex:1; overflow-y:auto; max-height:400px;">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th data-sort="transferNo">TO Number</th>
+                        <th data-sort="branch">Branch</th>
+                        <th data-sort="date">Date</th>
+                        <th>Items Count</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="to-history-table-body">
+                      <!-- Rendered via JS -->
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination" id="to-history-pagination">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. BRANCH RECEIVER PANEL -->
+        <div class="view-panel" id="branch-receiver">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Branch Receiver</h1>
+              <p>Acknowledge incoming dispatches, count unit intakes, and report shortage discrepancies.</p>
+            </div>
+            <!-- Branch switcher details -->
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:0.85rem; font-weight:600; color:var(--gray-500);">Viewing Branch:</span>
+              <select class="select-filter" id="branch-rec-filter-branch" style="font-weight:600;">
+                <option value="">All Branches</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Table of incoming dispatched orders -->
+          <div class="table-wrapper">
+            <div class="card-header" style="border-bottom:none;">
+              <h2>Pending Intake Delivery Shipments</h2>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>TO Number</th>
+                  <th>Destination Branch</th>
+                  <th>Dispatch Date</th>
+                  <th>Requested items count</th>
+                  <th>Shipment Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="branch-receiver-table-body">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6. SUPPLIER MANAGEMENT PANEL -->
+        <div class="view-panel" id="suppliers">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Supplier Management</h1>
+              <p>Register external salon material suppliers, contact people, and tax credentials.</p>
+            </div>
+            <button class="btn btn-primary" id="sup-add-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Supplier
+            </button>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Supplier Name</th>
+                  <th>Contact Person</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>GST Number</th>
+                  <th>Address</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="suppliers-table-body">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 7. BRANCH MANAGEMENT PANEL -->
+        <div class="view-panel" id="branches">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Branch Management</h1>
+              <p>Oversee company outlet branches, localized store managers, and phone records.</p>
+            </div>
+            <button class="btn btn-primary" id="branch-add-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Branch
+            </button>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Branch Name</th>
+                  <th>Location Address</th>
+                  <th>Outlet Manager</th>
+                  <th>Contact Number</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="branches-table-body">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 8. REPORTS PANEL -->
+        <div class="view-panel" id="reports">
+          <div class="view-header">
+            <div class="view-title-area">
+              <h1>Reports</h1>
+              <p>Compile current stock statistics, supplier intake files, branch consumption audits, and print sheets.</p>
+            </div>
+            <div style="display:flex; gap:12px;">
+              <button class="btn btn-secondary" id="report-export-csv-btn">Export CSV</button>
+              <button class="btn btn-primary" id="report-print-btn">Print Report</button>
+            </div>
+          </div>
+
+          <div class="report-parameters">
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr; align-items: flex-end;">
+              <div class="form-group">
+                <label for="report-select-type">Select Audit Report File *</label>
+                <select class="form-control" id="report-select-type">
+                  <option value="inventory">Inventory Valuation Summary</option>
+                  <option value="transfers">Branch Transfer Shipments</option>
+                  <option value="suppliers">Supplier Intake Ledger</option>
+                  <option value="consumption">Branch Consumption Distribution</option>
+                  <option value="lowstock">Low Stock & Out-of-Stock Warnings</option>
+                </select>
+              </div>
+              <div class="form-group" id="report-branch-filter-group" style="display:none;">
+                <label for="report-branch-filter">Filter Branch</label>
+                <select class="form-control" id="report-branch-filter">
+                  <option value="">All Branches</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-results-wrapper">
+            <div class="report-summary-boxes" id="report-summary-container">
+              <!-- Rendered summary boxes -->
+            </div>
+            <div class="table-wrapper" style="border:none; box-shadow:none; border-radius:0;">
+              <table id="report-table">
+                <thead id="report-table-head">
+                  <!-- JS inject columns -->
+                </thead>
+                <tbody id="report-table-body">
+                  <!-- JS inject data rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- TOAST ALERTS CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ================= MODALS SYSTEM ================= -->
+
+  <!-- A. PRODUCT ADD/EDIT MODAL -->
+  <div class="modal-overlay" id="modal-product">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-product-title">Add New Product</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="modal-product-form" novalidate>
+        <input type="hidden" id="modal-product-id">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="modal-product-sku">SKU Code *</label>
+              <input type="text" class="form-control" id="modal-product-sku" placeholder="SKU-XXX-XXXX-XX" required>
+              <span class="form-error-msg">Valid SKU is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-product-name">Product Name *</label>
+              <input type="text" class="form-control" id="modal-product-name" placeholder="Item descriptive label" required>
+              <span class="form-error-msg">Product Name is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-product-category">Category *</label>
+              <select class="form-control" id="modal-product-category" required>
+                <option value="">Select Category</option>
+                <option value="Hair Color">Hair Color</option>
+                <option value="Shampoo">Shampoo</option>
+                <option value="Conditioner">Conditioner</option>
+                <option value="Treatment">Treatment</option>
+                <option value="Styling">Styling</option>
+              </select>
+              <span class="form-error-msg">Category is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-product-supplier">Supplier *</label>
+              <select class="form-control" id="modal-product-supplier" required>
+                <option value="">Choose Supplier</option>
+              </select>
+              <span class="form-error-msg">Supplier is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-product-cost">Unit Cost Price (₹) *</label>
+              <input type="number" class="form-control" id="modal-product-cost" min="0.01" step="0.01" placeholder="₹0.00" required>
+              <span class="form-error-msg">Valid Cost is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-product-reorder">Reorder Threshold Limit *</label>
+              <input type="number" class="form-control" id="modal-product-reorder" min="0" placeholder="e.g. 10" required>
+              <span class="form-error-msg">Valid Reorder Level is required.</span>
+            </div>
+            <div class="form-group" id="modal-product-stock-container">
+              <label for="modal-product-stock">Initial Stock *</label>
+              <input type="number" class="form-control" id="modal-product-stock" min="0" value="0" required>
+              <span class="form-error-msg">Initial stock is required.</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="modal-product-submit-btn">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- B. STOCK ADJUSTMENT MODAL -->
+  <div class="modal-overlay" id="modal-adjust-stock">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Adjust Warehouse Product Stock</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="modal-adjust-stock-form" novalidate>
+        <input type="hidden" id="modal-adjust-product-id">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-group form-full">
+              <label>Target Product</label>
+              <input type="text" class="form-control" id="modal-adjust-product-name" readonly>
+            </div>
+            <div class="form-group">
+              <label>Current Stock</label>
+              <input type="text" class="form-control" id="modal-adjust-current-stock" readonly>
+            </div>
+            <div class="form-group">
+              <label for="modal-adjust-reason">Reason for Adjustment *</label>
+              <select class="form-control" id="modal-adjust-reason" required>
+                <option value="">Select Reason</option>
+                <option value="Damaged">Damaged</option>
+                <option value="Expired">Expired</option>
+                <option value="Lost">Lost</option>
+                <option value="Correction">Correction</option>
+              </select>
+              <span class="form-error-msg">Reason is required.</span>
+            </div>
+            <div class="form-group form-full">
+              <label for="modal-adjust-qty">Stock Alteration Count *</label>
+              <input type="number" class="form-control" id="modal-adjust-qty" placeholder="Use negative for deductions (e.g. -5) or positive (e.g. 5)" required>
+              <span class="form-error-msg">Please enter a valid stock alteration number.</span>
+            </div>
+            <div class="form-group form-full">
+              <label for="modal-adjust-notes">Notes / Reference Details *</label>
+              <textarea class="form-control" id="modal-adjust-notes" placeholder="Explain adjustment details..." required></textarea>
+              <span class="form-error-msg">Description details are required.</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Process Adjustment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- C. DETAILED HISTORY MOVEMENT LEDGER MODAL -->
+  <div class="modal-overlay" id="modal-history-ledger">
+    <div class="modal-content large">
+      <div class="modal-header">
+        <h3 id="modal-history-title">Product Stock Ledger Movements</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:0;">
+        <div class="table-wrapper" style="border:none; box-shadow:none; border-radius:0; max-height:450px; overflow-y:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Date / Time</th>
+                <th>Movement Type</th>
+                <th>Reference ID</th>
+                <th>Quantity Shift</th>
+                <th>Explanatory Notes</th>
+              </tr>
+            </thead>
+            <tbody id="modal-history-table-body">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel">Close Ledger</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- D. SUPPLIER EDIT MODAL -->
+  <div class="modal-overlay" id="modal-supplier">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-supplier-title">Add New Supplier</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="modal-supplier-form" novalidate>
+        <input type="hidden" id="modal-supplier-id">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="modal-supplier-name">Supplier Corporate Name *</label>
+              <input type="text" class="form-control" id="modal-supplier-name" placeholder="Legal corporate label" required>
+              <span class="form-error-msg">Supplier Name is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-supplier-contact">Primary Contact Person *</label>
+              <input type="text" class="form-control" id="modal-supplier-contact" placeholder="Agent Manager name" required>
+              <span class="form-error-msg">Contact Person is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-supplier-phone">Office Telephone Phone *</label>
+              <input type="tel" class="form-control" id="modal-supplier-phone" placeholder="+91 XXXXX XXXXX" required>
+              <span class="form-error-msg">Office Phone is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-supplier-email">Corporate Email *</label>
+              <input type="email" class="form-control" id="modal-supplier-email" placeholder="name@supplier.com" required>
+              <span class="form-error-msg">Valid corporate email is required.</span>
+            </div>
+            <div class="form-group form-full">
+              <label for="modal-supplier-gst">Tax Registration GST Number *</label>
+              <input type="text" class="form-control" id="modal-supplier-gst" placeholder="27XXXXX0000X0Z0" required>
+              <span class="form-error-msg">Tax GST Registration is required.</span>
+            </div>
+            <div class="form-group form-full">
+              <label for="modal-supplier-address">Office Address *</label>
+              <textarea class="form-control" id="modal-supplier-address" placeholder="Physical premises description..." required></textarea>
+              <span class="form-error-msg">Office Address is required.</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Supplier</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- E. BRANCH EDIT MODAL -->
+  <div class="modal-overlay" id="modal-branch">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-branch-title">Add New Branch Outlet</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="modal-branch-form" novalidate>
+        <input type="hidden" id="modal-branch-id">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="modal-branch-name">Branch Identity Label *</label>
+              <input type="text" class="form-control" id="modal-branch-name" placeholder="e.g. Powai Salon" required>
+              <span class="form-error-msg">Branch Identity Label is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-branch-manager">Assigned Outlet Manager *</label>
+              <input type="text" class="form-control" id="modal-branch-manager" placeholder="Full name" required>
+              <span class="form-error-msg">Assigned Outlet Manager is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="modal-branch-contact">Outlet Contact Phone *</label>
+              <input type="tel" class="form-control" id="modal-branch-contact" placeholder="+91 XXXXX XXXXX" required>
+              <span class="form-error-msg">Outlet Contact Phone is required.</span>
+            </div>
+            <div class="form-group form-full">
+              <label for="modal-branch-location">Branch Physical Location Address *</label>
+              <textarea class="form-control" id="modal-branch-location" placeholder="Full building location details..." required></textarea>
+              <span class="form-error-msg">Location Address is required.</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Branch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- F. GOODS RECEIPT NOTE (GRN) DETAILS VIEWER MODAL -->
+  <div class="modal-overlay" id="modal-grn-details">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Goods Receipt Note (GRN) Details</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-grn-details-body">
+        <!-- Renders dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel">Close</button>
+        <button type="button" class="btn btn-primary" id="btn-print-grn-slip">Print Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- G. TRANSFER ORDER DETAILS VIEWER & PROCESS MODAL -->
+  <div class="modal-overlay" id="modal-to-details">
+    <div class="modal-content large">
+      <div class="modal-header">
+        <h3 id="modal-to-details-title">Transfer Order Details</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-to-details-body">
+        <!-- Renders dynamically -->
+      </div>
+      <div class="modal-footer" id="modal-to-details-footer">
+        <!-- Buttons vary based on status & role -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Controllers -->
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/package-receiver.js"></script>
+  <script src="js/inventory.js"></script>
+  <script src="js/transfers.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "my-warehouse-manager",
+  "version": "1.0.0",
+  "description": "Corporate Inventory & Transfer Management System",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000"
+  },
+  "keywords": [],
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {}
+}
