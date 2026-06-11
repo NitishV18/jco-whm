@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nail Atelier | Book Appointment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:#000;
+}
+
+/* VIDEO */
+
+.bg-video{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+}
+
+/* OVERLAY */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(
+        to bottom,
+        rgba(0,0,0,.45),
+        rgba(0,0,0,.20),
+        rgba(0,0,0,.60)
+    );
+    z-index:-2;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+}
+
+.content{
+    width:100%;
+    max-width:420px;
+    color:white;
+}
+
+/* BRAND */
+
+.brand{
+    font-size:.75rem;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+/* TITLE */
+
+h1{
+    font-size:4rem;
+    line-height:.88;
+    font-weight:800;
+    margin-bottom:15px;
+    text-shadow:0 8px 40px rgba(0,0,0,.4);
+}
+
+.subtitle{
+    font-size:1rem;
+    line-height:1.7;
+    margin-bottom:28px;
+    opacity:.9;
+}
+
+/* FORM */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+input,
+select{
+
+    width:100%;
+    height:58px;
+
+    border:1px solid rgba(255,255,255,.20);
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+
+    color:white;
+
+    border-radius:16px;
+
+    padding:0 18px;
+
+    outline:none;
+
+    font-size:.95rem;
+}
+
+input::placeholder{
+    color:rgba(255,255,255,.75);
+}
+
+option{
+    color:black;
+}
+
+.book-btn{
+
+    width:100%;
+    height:62px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:white;
+
+    color:black;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    cursor:pointer;
+
+    margin-top:6px;
+
+    transition:.3s;
+}
+
+.book-btn:hover{
+    transform:translateY(-2px);
+}
+
+.note{
+    margin-top:18px;
+    text-align:center;
+    font-size:.75rem;
+    opacity:.8;
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+    h1{
+        font-size:3.2rem;
+    }
+
+    .subtitle{
+        font-size:.95rem;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- RANDOM VIDEO -->
+
+<video autoplay muted loop playsinline class="bg-video" id="bgVideo"></video>
+
+<div class="overlay"></div>
+
+<section class="hero">
+
+    <div class="content">
+
+        <div class="brand">
+            Jean Claude Olivier
+        </div>
+
+        <h1>
+            Nails Worth<br>
+            Staring At
+        </h1>
+
+        <p class="subtitle">
+            Gel Polish • Acrylic Extensions • 3D Nail Art
+        </p>
+
+        <form>
+
+            <input
+                type="text"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                type="tel"
+                placeholder="Phone Number"
+                required
+            >
+
+            <select required>
+
+                <option value="">
+                    Select Service
+                </option>
+
+                <option>Gel Polish</option>
+
+                <option>Acrylic Extension</option>
+
+                <option>3D Nail Art</option>
+
+                <option>Gel Removal</option>
+
+                <option>Acrylic Removal</option>
+
+            </select>
+
+            <button
+                type="submit"
+                class="book-btn">
+                BOOK APPOINTMENT
+            </button>
+
+        </form>
+
+        <div class="note">
+            Luxury nail appointments • Limited slots daily
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+const videos = [
+
+'https://videos.pexels.com/video-files/3997850/3997850-uhd_1440_2732_25fps.mp4',
+
+'https://videos.pexels.com/video-files/29293372/12632964_1080_1920_30fps.mp4',
+
+'https://videos.pexels.com/video-files/35049539/14846976_1440_2560_50fps.mp4'
+
+];
+
+const selectedVideo =
+videos[Math.floor(Math.random() * videos.length)];
+
+document.getElementById('bgVideo').innerHTML =
+`<source src="${selectedVideo}" type="video/mp4">`;
+
+</script>
+
+</body>
+</html>
