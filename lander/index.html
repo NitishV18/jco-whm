@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jean Claude Olivier | Premium Luxury Salon & Spa</title>
+  <meta name="description" content="Experience timeless beauty and luxury hair styling at Jean Claude Olivier. Book premium hair, skin, nails, and spa services in an ultra-exclusive European-inspired salon.">
+  <meta name="keywords" content="luxury salon, premium haircut, hair botox, luxury spa, hair color, Jean Claude Olivier, European salon">
+  <meta name="author" content="Jean Claude Olivier">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jean Claude Olivier | Premium Luxury Salon & Spa">
+  <meta property="og:description" content="Experience timeless beauty and luxury hair styling at Jean Claude Olivier. Premium European-inspired salon.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Elegant Loading Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <h1 class="preloader-logo">JEAN CLAUDE OLIVIER</h1>
+      <p class="preloader-subtitle">HAUTE COIFFURE</p>
+      <div class="preloader-bar">
+        <div class="preloader-progress" id="preloaderProgress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar-header" id="navbar">
+    <div class="container navbar-container">
+      <a href="#" class="navbar-logo" id="navLogo">
+        JEAN CLAUDE OLIVIER
+      </a>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#membership" class="nav-link">Membership</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#book-now" class="btn btn-nav-cta">Book Appointment</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <!-- Cinematic Video/High-end Background -->
+    <div class="hero-video-container">
+      <div class="hero-video-overlay"></div>
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80" alt="Luxury Salon Interior" class="hero-bg-img">
+    </div>
+
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="hero-tagline scroll-reveal">HAUTE ESTHÉTIQUE</span>
+        <h1 class="hero-title scroll-reveal">Luxury Hair.<br>Timeless Beauty.</h1>
+        <p class="hero-subtitle scroll-reveal">Premium Hair &bull; Skin &bull; Nails &bull; Spa</p>
+        <div class="hero-ctas scroll-reveal">
+          <a href="#book-now" class="btn btn-primary">Book Appointment</a>
+          <a href="#services" class="btn btn-secondary">Explore Services</a>
+        </div>
+      </div>
+
+      <!-- Floating Glassmorphism Booking Card -->
+      <div class="booking-card-wrapper scroll-reveal" id="book-now">
+        <div class="booking-card">
+          <div class="booking-card-header">
+            <h3>Reserve An Experience</h3>
+            <p>Experience personalized couture styling</p>
+          </div>
+          <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+              <input type="text" id="bookingName" name="name" required placeholder=" ">
+              <label for="bookingName">Your Name</label>
+            </div>
+            
+            <div class="form-group">
+              <input type="tel" id="bookingPhone" name="phone" required placeholder=" ">
+              <label for="bookingPhone">Phone Number</label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group select-group">
+                <select id="bookingBranch" name="branch" required>
+                  <option value="" disabled selected hidden></option>
+                  <option value="Paris">Paris - Champs-Élysées</option>
+                  <option value="Milan">Milan - Quadrilatero</option>
+                  <option value="London">London - Mayfair</option>
+                  <option value="New York">New York - Fifth Ave</option>
+                </select>
+                <label for="bookingBranch">Select Branch</label>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+
+              <div class="form-group select-group">
+                <select id="bookingService" name="service" required>
+                  <option value="" disabled selected hidden></option>
+                  <option value="Signature Haircut">Signature Haircut</option>
+                  <option value="Couture Colour">Balayage & Colour</option>
+                  <option value="Luxury Hair Botox">Luxury Hair Botox</option>
+                  <option value="Couture Keratin">Couture Keratin</option>
+                  <option value="Editorial Nails">Editorial Nails</option>
+                  <option value="Sculpting Facial">Sculpting Facial</option>
+                  <option value="Wellness Spa">Wellness Spa</option>
+                </select>
+                <label for="bookingService">Service</label>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <input type="date" id="bookingDate" name="date" required placeholder=" ">
+                <label for="bookingDate">Date</label>
+              </div>
+              <div class="form-group">
+                <input type="time" id="bookingTime" name="time" required placeholder=" ">
+                <label for="bookingTime">Time</label>
+              </div>
+            </div>
+
+            <div class="gender-toggle-wrapper">
+              <span class="toggle-label">Preferred Stylist Gender</span>
+              <div class="gender-toggle-group">
+                <input type="radio" id="genderAny" name="gender" value="No Preference" checked>
+                <label for="genderAny" class="gender-btn">No Preference</label>
+
+                <input type="radio" id="genderFemale" name="gender" value="Female">
+                <label for="genderFemale" class="gender-btn">Female</label>
+
+                <input type="radio" id="genderMale" name="gender" value="Male">
+                <label for="genderMale" class="gender-btn">Male</label>
+              </div>
+            </div>
+
+            <div class="consent-wrapper">
+              <label class="checkbox-container">
+                <input type="checkbox" id="whatsappConsent" name="whatsapp" checked>
+                <span class="checkmark"></span>
+                <span class="checkbox-text">Send booking details and luxury offers on WhatsApp</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-gold-gradient btn-full">
+              <span>Book Appointment</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Below Hero: Social Proof Banner -->
+  <section class="trust-banner">
+    <div class="container trust-container">
+      <div class="trust-stat">
+        <span class="stat-number">50,000+</span>
+        <span class="stat-label">Discerning Clients</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-rating">
+        <span class="rating-stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </span>
+        <span class="rating-label">Google Rating 4.9★</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-brands">
+        <span class="brand-logo">DYSON PROFESSIONAL</span>
+        <span class="brand-logo">KÉRASTASE</span>
+        <span class="brand-logo">L'ORÉAL PROF</span>
+        <span class="brand-logo">BALMAIN PARIS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">THE ART OF HAIR & BEAUTY</span>
+        <h2 class="section-title">Signature Services</h2>
+        <p class="section-subtitle">Tailored treatments crafted by master stylists using the world's most exclusive formulations.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card scroll-reveal">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Couture Haircut" loading="lazy">
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <h3 class="service-name">Signature Haircut</h3>
+            <p class="service-desc">Precision cutting and personalized consultation from our Master Directors.</p>
+            <div class="service-meta">
+              <span class="service-price">From $120</span>
+              <span class="service-duration">60 Mins</span>
+            </div>
+            <a href="#book-now" class="btn btn-text-gold">Reserve Now <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card scroll-reveal">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1605497746444-ac9dbd39f4a5?auto=format&fit=crop&w=600&q=80" alt="Balayage & Color" loading="lazy">
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <h3 class="service-name">Couture Colour</h3>
+            <p class="service-desc">French Balayage, bespoke glossing, and dimensional color mapping.</p>
+            <div class="service-meta">
+              <span class="service-price">From $280</span>
+              <span class="service-duration">180 Mins</span>
+            </div>
+            <a href="#book-now" class="btn btn-text-gold">Reserve Now <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card scroll-reveal">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Hair Botox" loading="lazy">
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <h3 class="service-name">Hair Botox</h3>
+            <p class="service-desc">Anti-aging, deeply hydrating cellular restoration therapy for luminous shine.</p>
+            <div class="service-meta">
+              <span class="service-price">From $350</span>
+              <span class="service-duration">120 Mins</span>
+            </div>
+            <a href="#book-now" class="btn btn-text-gold">Reserve Now <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card scroll-reveal">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" alt="Keratin Treatment" loading="lazy">
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <h3 class="service-name">Keratin Smoothing</h3>
+            <p class="service-desc">Premium amino-acid silk therapy to eliminate frizz and align cuticle integrity.</p>
+            <div class="service-meta">
+              <span class="service-price">From $300</span>
+              <span class="service-duration">150 Mins</span>
+            </div>
+            <a href="#book-now" class="btn btn-text-gold">Reserve Now <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card scroll-reveal">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" alt="Editorial Nails" loading="lazy">
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <h3 class="service-name">Editorial Nails</h3>
+            <p class="service-desc">Couture gel extensions, luxury Russian manicures, and bespoke nail art.</p>
+            <div class="service-meta">
+              <span class="service-price">From $90</span>
+              <span class="service-duration">75 Mins</span>
+            </div>
+            <a href="#book-now" class="btn btn-text-gold">Reserve Now <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card scroll-reveal">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=80" alt="Sculpting Facial" loading="lazy">
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <h3 class="service-name">Sculpting Facial</h3>
+            <p class="service-desc">Microcurrent lifting, lymphatic drainage, and customized Dior Skincare.</p>
+            <div class="service-meta">
+              <span class="service-price">From $180</span>
+              <span class="service-duration">90 Mins</span>
+            </div>
+            <a href="#book-now" class="btn btn-text-gold">Reserve Now <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+
+        <!-- Service 7 -->
+        <div class="service-card scroll-reveal">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Wellness Spa" loading="lazy">
+            <div class="service-overlay"></div>
+          </div>
+          <div class="service-info">
+            <h3 class="service-name">Wellness Spa & Rituals</h3>
+            <p class="service-desc">Aromatic hot stone massage, body wraps, and deep meditative scalp therapy.</p>
+            <div class="service-meta">
+              <span class="service-price">From $200</span>
+              <span class="service-duration">90 Mins</span>
+            </div>
+            <a href="#book-now" class="btn btn-text-gold">Reserve Now <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before & After Transformation Slider -->
+  <section class="transformation-section">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">COUTURE METAMORPHOSIS</span>
+        <h2 class="section-title">The Art of Transformation</h2>
+        <p class="section-subtitle">Witness the immediate brilliance of our signature hair restoration and styling therapies.</p>
+      </div>
+
+      <div class="before-after-wrapper scroll-reveal">
+        <div class="before-after-container" id="beforeAfterSlider">
+          <div class="img background-img">
+            <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1200&q=80" alt="After Styling">
+          </div>
+          <div class="img foreground-img" id="foregroundImg">
+            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=80" alt="Before Styling">
+          </div>
+          <div class="slider-handle" id="sliderHandle">
+            <div class="slider-arrow left"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="slider-line"></div>
+            <div class="slider-arrow right"><i class="fa-solid fa-chevron-right"></i></div>
+          </div>
+          <div class="label label-before">BEFORE</div>
+          <div class="label label-after">AFTER</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing List Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">INVESTMENT IN SELF</span>
+        <h2 class="section-title">Bespoke Pricing</h2>
+        <p class="section-subtitle">Exquisite styling has a standard. Explore a transparent menu of our curated experiences.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Hair Menu -->
+        <div class="pricing-column scroll-reveal">
+          <h3 class="pricing-category">Hair Design & Color</h3>
+          <ul class="pricing-list">
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Director's Haircut</span>
+                <span class="pricing-item-price">$120</span>
+              </div>
+              <p class="pricing-item-desc">Personalized shape design including styling and finish.</p>
+            </li>
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Signature Balayage</span>
+                <span class="pricing-item-price">$280</span>
+              </div>
+              <p class="pricing-item-desc">Hand-painted French technique for sun-kissed dimension.</p>
+            </li>
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Full Highlights</span>
+                <span class="pricing-item-price">$220</span>
+              </div>
+              <p class="pricing-item-desc">Multi-dimensional custom foil highlighting.</p>
+            </li>
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Luxury Blowout & Style</span>
+                <span class="pricing-item-price">$80</span>
+              </div>
+              <p class="pricing-item-desc">Scalp massage, wash, and luxury blowout styling.</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skin & Spa Menu -->
+        <div class="pricing-column scroll-reveal">
+          <h3 class="pricing-category">Skin, Nails & Wellness</h3>
+          <ul class="pricing-list">
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Dior Couture Facial</span>
+                <span class="pricing-item-price">$250</span>
+              </div>
+              <p class="pricing-item-desc">Luxury microcurrent cellular renewal treatment.</p>
+            </li>
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Russian Manicure & Gel</span>
+                <span class="pricing-item-price">$110</span>
+              </div>
+              <p class="pricing-item-desc">Impeccable dry cuticle care with custom overlay.</p>
+            </li>
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Signature Massage Ritual</span>
+                <span class="pricing-item-price">$190</span>
+              </div>
+              <p class="pricing-item-desc">Warm volcanic basalt stones and pure aromatic oils.</p>
+            </li>
+            <li>
+              <div class="pricing-item-header">
+                <span class="pricing-item-name">Luxury Hair Botox</span>
+                <span class="pricing-item-price">$350</span>
+              </div>
+              <p class="pricing-item-desc">Intensive collagen and peptide reconstruction therapy.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Section -->
+  <section class="membership-section" id="membership">
+    <div class="container">
+      <div class="membership-card scroll-reveal">
+        <div class="membership-info">
+          <span class="membership-tag">THE PRIVATE CLUB</span>
+          <h2 class="membership-title">L'Élite Membership</h2>
+          <p class="membership-desc">Unlock a realm of customized beauty rituals. Our members receive curated, year-round privileges, priority scheduling, and exclusive access to guest master stylists.</p>
+          
+          <ul class="membership-benefits">
+            <li><i class="fa-solid fa-circle-check"></i> Priority Booking & Complimentary Concierge Line</li>
+            <li><i class="fa-solid fa-circle-check"></i> $200 Monthly Spa & Ritual Credits</li>
+            <li><i class="fa-solid fa-circle-check"></i> 15% Off All Professional Retail Collections</li>
+            <li><i class="fa-solid fa-circle-check"></i> Invitation to Private Seasonal Trend Previews</li>
+          </ul>
+
+          <a href="#book-now" class="btn btn-gold-gradient">Join L'Élite Club</a>
+        </div>
+        <div class="membership-visual">
+          <div class="membership-glass-card">
+            <span class="card-logo">JCO</span>
+            <span class="card-type">L'ÉLITE MEMBER</span>
+            <span class="card-number">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 2026</span>
+            <span class="card-holder">MR. SEBASTIAN CHEN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">CLIENT PERSPECTIVES</span>
+        <h2 class="section-title">An Unrivaled Experience</h2>
+        <p class="section-subtitle">Hear from our clients who entrust us with their styling and rejuvenation rituals.</p>
+      </div>
+
+      <div class="testimonials-slider-container scroll-reveal">
+        <div class="testimonials-track" id="testimonialTrack">
+          <!-- Slide 1 -->
+          <div class="testimonial-slide active">
+            <div class="testimonial-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <blockquote class="testimonial-quote">
+              "The French Balayage I received at Jean Claude Olivier is easily the best color job I have ever had in my life. The transition is completely seamless, and the champagne tones match my complexion perfectly. An editorial experience."
+            </blockquote>
+            <cite class="testimonial-author">Lady Victoria Sterling</cite>
+            <span class="testimonial-role">Vogue Contributor</span>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <blockquote class="testimonial-quote">
+              "Stepping into the Mayfair salon is like walking into a sanctuary. The attention to detail, from the signature white-tea blend to the precision microcurrent facial, is flawless. Truly a premium experience."
+            </blockquote>
+            <cite class="testimonial-author">Alistair Bennett</cite>
+            <span class="testimonial-role">Art Director</span>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <blockquote class="testimonial-quote">
+              "My hair was heavily damaged before trying their Signature Hair Botox. The transformation was instant—sleek, luminous, and incredibly soft. Highly recommend Jean Claude Olivier to anyone seeking absolute luxury."
+            </blockquote>
+            <cite class="testimonial-author">Charlotte Dubois</cite>
+            <span class="testimonial-role">Fashion Designer</span>
+          </div>
+        </div>
+
+        <div class="testimonial-controls">
+          <button class="test-btn prev-btn" id="prevTestimonial" aria-label="Previous Testimonial">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="testimonial-indicators" id="testimonialIndicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+          </div>
+          <button class="test-btn next-btn" id="nextTestimonial" aria-label="Next Testimonial">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram / Gallery Grid Section -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-tag">CURATED LOOKS</span>
+        <h2 class="section-title">The Editorial Lookbook</h2>
+        <p class="section-subtitle">Explore a collection of styles and captures straight from our global salons.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80" alt="Champagne Balayage Look" loading="lazy">
+          <div class="gallery-hover">
+            <i class="fa-brands fa-instagram"></i>
+            <span>View Style Details</span>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1605497746444-ac9dbd39f4a5?auto=format&fit=crop&w=600&q=80" alt="Precision Styling Session" loading="lazy">
+          <div class="gallery-hover">
+            <i class="fa-brands fa-instagram"></i>
+            <span>View Style Details</span>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Client Metamorphosis" loading="lazy">
+          <div class="gallery-hover">
+            <i class="fa-brands fa-instagram"></i>
+            <span>View Style Details</span>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" alt="Salon Aesthetic Corner" loading="lazy">
+          <div class="gallery-hover">
+            <i class="fa-brands fa-instagram"></i>
+            <span>View Style Details</span>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" alt="Minimalist Nail Styling" loading="lazy">
+          <div class="gallery-hover">
+            <i class="fa-brands fa-instagram"></i>
+            <span>View Style Details</span>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Botanical Spa Oils" loading="lazy">
+          <div class="gallery-hover">
+            <i class="fa-brands fa-instagram"></i>
+            <span>View Style Details</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="container about-container">
+      <div class="about-content scroll-reveal">
+        <span class="section-tag">OUR HERITAGE</span>
+        <h2 class="section-title">The Philosophy of Couture</h2>
+        <p>Founded on the principles of classic European high fashion, Jean Claude Olivier represents the junction of master craftsmanship and contemporary artistic design.</p>
+        <p>We believe that beauty is personal, dynamic, and timeless. Every color placement, precision cut, and wellness therapy is tailor-made to align with your unique aesthetic profile. Our quiet sanctuary settings provide the perfect setting to escape the noise and indulge in absolute transformation.</p>
+        <div class="about-signature">
+          <span class="signature-text">Jean Claude Olivier</span>
+          <span class="signature-title">Founder & Artistic Director</span>
+        </div>
+      </div>
+      <div class="about-visual scroll-reveal">
+        <img src="https://images.unsplash.com/photo-1633681926035-ec1ac984418a?auto=format&fit=crop&w=800&q=80" alt="Artistic Styling" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Footer -->
+  <footer class="main-footer" id="contact">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h2 class="footer-logo">JEAN CLAUDE OLIVIER</h2>
+        <p class="footer-tagline">Haute Coiffure &bull; Timeless Elegance</p>
+        <p class="footer-description">A sanctuary of artistic hair design and holistic aesthetic therapies. Redefining modern European luxury for clients worldwide.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Salon Hours</h4>
+        <ul class="footer-hours">
+          <li><span>Monday - Friday</span> <span>09:00 - 21:00</span></li>
+          <li><span>Saturday</span> <span>09:00 - 20:00</span></li>
+          <li><span>Sunday</span> <span>10:00 - 18:00</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Locations</h4>
+        <ul class="footer-locations">
+          <li><strong>Paris</strong>: 42 Avenue des Champs-Élysées</li>
+          <li><strong>London</strong>: 18 Conduit St, Mayfair</li>
+          <li><strong>Milan</strong>: Via Montenapoleone, 8</li>
+          <li><strong>New York</strong>: 712 Fifth Avenue</li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Newsletter</h4>
+        <p class="footer-newsletter-desc">Subscribe to receive exclusive collection updates, seasonal styles, and private salon offers.</p>
+        <form class="footer-newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your luxury email" required>
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-container">
+        <p>&copy; 2026 Jean Claude Olivier. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Experience</a>
+          <a href="#">Cookie settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-card">
+      <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <h2>Reservation Requested</h2>
+      <p>Thank you, <strong id="modalClientName">Client</strong>. A salon concierge from our <strong id="modalBranch">Branch</strong> boutique will contact you shortly to confirm your booking for <strong id="modalDateTime">Date/Time</strong>.</p>
+      <button class="btn btn-gold-gradient" id="closeModal">Return to Salon</button>
+    </div>
+  </div>
+
+  <!-- Custom Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
